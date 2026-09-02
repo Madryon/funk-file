@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Funk File — PDF Tools</title>
+  <meta name="description" content="Fast, simple PDF tools by Funk File.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">F</span> Funk File</div>
+  <span class="limit">{{ max_upload_mb }} MB max file</span>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <p class="eyebrow">PDF TOOLS</p>
+    <h1>Everything you need for your PDFs.</h1>
+    <p class="sub">Merge, split, compress, convert, edit and secure files in a few clicks.</p>
+  </section>
+
+  <section class="tool-grid" id="tools">
+    <button class="tool active" data-action="merge"><b>Merge PDF</b><span>Combine files</span></button>
+    <button class="tool" data-action="split"><b>Split PDF</b><span>Separate pages</span></button>
+    <button class="tool" data-action="compress"><b>Compress PDF</b><span>Reduce size</span></button>
+    <button class="tool" data-action="pdf-to-word"><b>PDF → Word</b><span>Editable DOCX</span></button>
+    <button class="tool" data-action="word-to-pdf"><b>Word → PDF</b><span>Convert documents</span></button>
+    <button class="tool" data-action="pdf-to-jpg"><b>PDF → JPG</b><span>Render pages</span></button>
+    <button class="tool" data-action="pdf-to-png"><b>PDF → PNG</b><span>Render pages</span></button>
+    <button class="tool" data-action="jpg-to-pdf"><b>JPG → PDF</b><span>Make a PDF</span></button>
+    <button class="tool" data-action="png-to-pdf"><b>PNG → PDF</b><span>Make a PDF</span></button>
+    <button class="tool" data-action="rotate"><b>Rotate PDF</b><span>90° / 180° / 270°</span></button>
+    <button class="tool" data-action="delete-pages"><b>Delete Pages</b><span>Remove selected pages</span></button>
+    <button class="tool" data-action="extract-pages"><b>Extract Pages</b><span>Keep selected pages</span></button>
+    <button class="tool" data-action="watermark"><b>Watermark</b><span>Add text watermark</span></button>
+    <button class="tool" data-action="protect"><b>Protect PDF</b><span>Password lock</span></button>
+    <button class="tool" data-action="unlock"><b>Unlock PDF</b><span>Remove known password</span></button>
+  </section>
+
+  <section class="workspace">
+    <form id="toolForm">
+      <input type="hidden" name="action" id="action" value="merge">
+      <div class="dropzone" id="dropzone">
+        <div class="upload-icon">↑</div>
+        <h2 id="toolTitle">Merge PDF</h2>
+        <p id="toolHint">Drop PDF files here or click to browse.</p>
+        <input id="files" name="files" type="file" multiple hidden>
+        <button type="button" class="choose" id="choose">Choose files</button>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+      <div class="options" id="options"></div>
+
+      <button class="primary" id="submit" type="submit">Process PDF</button>
+      <div class="status" id="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section class="privacy">
+    <div><b>Simple by design</b><span>No account or database is required.</span></div>
+    <div><b>50 MB uploads</b><span>Files are temporary and automatically cleaned.</span></div>
+    <div><b>Future-ready</b><span>Authentication and history can be added later.</span></div>
+  </section>
+</main>
+
+<footer>© 2026 Funk File</footer>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

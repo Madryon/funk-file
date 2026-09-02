@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: funk-file
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 180
+    envVars:
+      - key: MAX_UPLOAD_MB
+        value: "50"
+      - key: USE_ILOVEPDF
+        value: "false"
+      - key: ILOVEPDF_PUBLIC_KEY
+        sync: false
+      - key: ILOVEPDF_SECRET_KEY
+        sync: false
