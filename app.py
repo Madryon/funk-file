@@ -79,29 +79,25 @@ def save_files(field="files"):
 
 def make_download(path, download_name=None):
     path = Path(path)
+
     return jsonify({
-    "success": True,
-    "filename": result_path.name,
-    "download_url": url_for(
-        "download_file",
-        filename=result_path.name
-    )
-})
-        download_name=download_name or path.name,
-        max_age=0,
-    )
+        "success": True,
+        "filename": download_name or path.name,
+        "download_url": f"/download/{path.name}"
+    })
+
 
 @app.route("/download/<filename>")
 def download_file(filename):
-    file_path = Path(app.config["TMP_DIR"]) / filename
+    file_path = TMP_DIR / filename
 
     if not file_path.exists():
-        return "File not found", 404
+        return jsonify({"error": "File not found or expired."}), 404
 
     return send_file(
         file_path,
         as_attachment=True,
-        download_name=filename
+        download_name=file_path.name
     )
     
 
