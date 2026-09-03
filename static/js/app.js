@@ -122,13 +122,34 @@ form.addEventListener("submit", async e => {
       try { msg = (await res.json()).error || msg; } catch {}
       throw new Error(msg);
     }
-    const blob = await res.blob();
-    const disposition = res.headers.get("Content-Disposition") || "";
-    const match = disposition.match(/filename="?([^"]+)"?/i);
-    const name = match ? match[1] : "funk-file-result";
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    const data = await response.json();
+
+if (data.success) {
+    addDownloadItem(data.filename, data.download_url);
+}
+    function addDownloadItem(filename, downloadUrl) {
+    const downloadList = document.getElementById("downloadList");
+
+    const item = document.createElement("div");
+    item.className = "download-item";
+
+    item.innerHTML = `
+        <div class="download-info">
+            <span class="download-filename">${filename}</span>
+            <span class="download-status">Ready</span>
+        </div>
+
+        <a
+            class="download-button"
+            href="${downloadUrl}"
+            download
+        >
+            Download
+        </a>
+    `;
+
+    downloadList.prepend(item);
+}
     URL.revokeObjectURL(url);
     status.textContent = "Done — your file is ready.";
     status.classList.add("ok");
