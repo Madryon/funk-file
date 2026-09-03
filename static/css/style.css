@@ -37,3 +37,49 @@ h1{font-size:clamp(36px,6vw,64px);line-height:.98;letter-spacing:-3px;margin:10p
 footer{text-align:center;color:#888;font-size:12px;padding:25px}
 @media(max-width:900px){.tool-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.shell{padding:35px 14px}.tool-grid{grid-template-columns:repeat(2,1fr)}.privacy{grid-template-columns:1fr}h1{letter-spacing:-2px}.workspace{padding:12px}.topbar{padding:0 16px}}
+.downloads-section {
+    margin-top: 30px;
+}
+
+.download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.download-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.download-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.download-filename {
+    font-weight: 600;
+}
+
+.download-status {
+    font-size: 13px;
+    color: #666;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.empty-downloads {
+    color: #777;
+}
