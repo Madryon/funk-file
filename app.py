@@ -79,12 +79,31 @@ def save_files(field="files"):
 
 def make_download(path, download_name=None):
     path = Path(path)
-    return send_file(
-        path,
-        as_attachment=True,
+    return jsonify({
+    "success": True,
+    "filename": result_path.name,
+    "download_url": url_for(
+        "download_file",
+        filename=result_path.name
+    )
+})
         download_name=download_name or path.name,
         max_age=0,
     )
+
+@app.route("/download/<filename>")
+def download_file(filename):
+    file_path = Path(app.config["TMP_DIR"]) / filename
+
+    if not file_path.exists():
+        return "File not found", 404
+
+    return send_file(
+        file_path,
+        as_attachment=True,
+        download_name=filename
+    )
+    
 
 
 def form_value(name, default=None):
